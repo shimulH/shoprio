@@ -1,6 +1,6 @@
 export function Topbar() {
   return (
-    <header className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 bg-white px-5 py-4">
+    <header className="sticky top-0 flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 bg-white px-5 py-4">
       <div>
         <p className="text-sm text-slate-500">Good morning</p>
         <h2 className="text-xl font-semibold text-slate-900">Shimul Store</h2>

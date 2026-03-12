@@ -16,9 +16,13 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden w-64 border-r border-slate-200 bg-white px-5 py-6 lg:block">
-      <p className="text-xs font-semibold tracking-[0.2em] text-slate-500">STOREFRONT</p>
-      <h1 className="mt-2 text-xl font-semibold text-slate-900">Admin Dashboard</h1>
+    <aside className="hidden sticky top-0 h-screen w-64 border-r border-slate-200 bg-white px-5 py-6 lg:block">
+      <p className="text-xs font-semibold tracking-[0.2em] text-slate-500">
+        STOREFRONT
+      </p>
+      <h1 className="mt-2 text-xl font-semibold text-slate-900">
+        Admin Dashboard
+      </h1>
 
       <nav className="mt-8 space-y-1">
         {navItems.map((item) => {
