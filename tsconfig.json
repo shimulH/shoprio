@@ -19,7 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@buildd/utils": ["./src/lib/utils"],
+      "@buildd/services": ["./src/lib/services"]
     }
   },
   "include": [

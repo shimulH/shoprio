@@ -1,4 +1,14 @@
 import { Product } from "@/types/dashboard";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/app-table";
 
 type ProductTableProps = {
   data: Product[];
@@ -6,45 +16,57 @@ type ProductTableProps = {
 
 export function ProductTable({ data }: ProductTableProps) {
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-      <div className="border-b border-slate-200 px-4 py-3">
-        <h3 className="font-semibold text-slate-900">Products</h3>
-      </div>
-
-      <div className="overflow-x-auto">
-        <table className="min-w-full text-left text-sm">
-          <thead className="bg-slate-50 text-slate-500">
-            <tr>
-              <th className="px-4 py-3 font-medium">Product</th>
-              <th className="px-4 py-3 font-medium">SKU</th>
-              <th className="px-4 py-3 font-medium">Inventory</th>
-              <th className="px-4 py-3 font-medium">Price</th>
-              <th className="px-4 py-3 font-medium">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((product) => (
-              <tr key={product.id} className="border-t border-slate-100">
-                <td className="px-4 py-3 font-medium text-slate-800">{product.title}</td>
-                <td className="px-4 py-3 text-slate-700">{product.sku}</td>
-                <td className="px-4 py-3 text-slate-700">{product.inventory}</td>
-                <td className="px-4 py-3 text-slate-800">{product.price}</td>
-                <td className="px-4 py-3">
-                  <span
-                    className={`rounded-full px-2 py-1 text-xs ${
-                      product.status === "Active"
-                        ? "bg-emerald-100 text-emerald-700"
-                        : "bg-slate-100 text-slate-700"
-                    }`}
-                  >
-                    {product.status}
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <Card className="overflow-hidden bg-white shadow-sm">
+      <CardHeader className="border-b border-slate-200 px-4 py-3">
+        <CardTitle className="text-sm font-semibold text-slate-900">
+          Products
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="p-0">
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Product</TableHead>
+                <TableHead>SKU</TableHead>
+                <TableHead>Inventory</TableHead>
+                <TableHead>Price</TableHead>
+                <TableHead>Status</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {data.map((product) => (
+                <TableRow key={product.id}>
+                  <TableCell className="font-medium text-slate-800">
+                    {product.title}
+                  </TableCell>
+                  <TableCell className="text-slate-700">
+                    {product.sku}
+                  </TableCell>
+                  <TableCell className="text-slate-700">
+                    {product.inventory}
+                  </TableCell>
+                  <TableCell className="text-slate-800">
+                    {product.price}
+                  </TableCell>
+                  <TableCell>
+                    <Badge
+                      variant="outline"
+                      className={
+                        product.status === "Active"
+                          ? "bg-emerald-100 text-emerald-700 border-emerald-200"
+                          : "bg-slate-100 text-slate-700 border-slate-200"
+                      }
+                    >
+                      {product.status}
+                    </Badge>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
