@@ -6,8 +6,12 @@ export default function CustomersPage() {
   return (
     <DashboardShell>
       <div className="space-y-4">
-        <h2 className="text-xl font-semibold text-slate-900">Customers</h2>
-        <p className="text-sm text-slate-500">Review customer profiles and lifetime value at a glance.</p>
+        <div>
+          <h2 className="text-xl font-semibold text-slate-900">Customers</h2>
+          <p className="text-sm text-slate-500">
+            Review customer profiles and lifetime value at a glance.
+          </p>
+        </div>
         <CustomerTable data={customers} />
       </div>
     </DashboardShell>

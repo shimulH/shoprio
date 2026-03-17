@@ -3,62 +3,81 @@
 import { useState } from "react";
 import { OrderDetailsWorkspace } from "@/components/dashboard/order-details-workspace";
 import { OrdersManagement } from "@/components/dashboard/orders-management";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 export function DashboardOrdersDrawers() {
   const [openOrdersDrawer, setOpenOrdersDrawer] = useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
 
-  function closeAll() {
-    setOpenOrdersDrawer(false);
-    setSelectedOrderId(null);
-  }
-
   return (
     <>
-      <button
-        onClick={() => setOpenOrdersDrawer(true)}
-        className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
-      >
+      <Button onClick={() => setOpenOrdersDrawer(true)}>
         Open Orders Workspace
-      </button>
+      </Button>
 
-      {openOrdersDrawer && (
-        <div className="fixed inset-0 z-40">
-          <button
-            aria-label="Close orders workspace drawers"
-            onClick={closeAll}
-            className="absolute inset-0 bg-black/20"
+      <Sheet
+        open={openOrdersDrawer}
+        onOpenChange={(open) => {
+          if (!open) {
+            setOpenOrdersDrawer(false);
+            setSelectedOrderId(null);
+          } else {
+            setOpenOrdersDrawer(true);
+          }
+        }}
+      >
+        <SheetContent
+          side="right"
+          className="w-full max-w-3xl overflow-y-auto bg-slate-50 p-5"
+          showCloseButton={false}
+        >
+          <SheetHeader className="mb-4 flex-row items-center justify-between p-0">
+            <SheetTitle>Orders Workspace</SheetTitle>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                setOpenOrdersDrawer(false);
+                setSelectedOrderId(null);
+              }}
+            >
+              Close
+            </Button>
+          </SheetHeader>
+
+          <OrdersManagement
+            openInPlaceDrawer={false}
+            onOpenOrder={(orderId) => setSelectedOrderId(orderId)}
+            stickyTotalColumn
           />
+        </SheetContent>
+      </Sheet>
 
-          <aside className="absolute right-0 top-0 h-full w-full max-w-3xl overflow-y-auto border-l border-slate-200 bg-slate-50 p-5 shadow-xl">
-            <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-slate-900">Orders Workspace</h3>
-              <button
-                onClick={closeAll}
-                className="rounded-md border border-slate-300 px-3 py-1 text-sm text-slate-700 hover:bg-slate-100"
-              >
-                Close
-              </button>
-            </div>
-
-            <OrdersManagement
-              openInPlaceDrawer={false}
-              onOpenOrder={(orderId) => setSelectedOrderId(orderId)}
-              stickyTotalColumn
-            />
-          </aside>
-
+      <Sheet
+        open={!!selectedOrderId}
+        onOpenChange={(open) => {
+          if (!open) setSelectedOrderId(null);
+        }}
+      >
+        <SheetContent
+          side="right"
+          className="z-60 w-full max-w-2xl overflow-y-auto bg-slate-50 p-5"
+        >
           {selectedOrderId && (
-            <aside className="absolute right-0 top-0 z-50 h-full w-full max-w-2xl overflow-y-auto border-l border-slate-200 bg-slate-50 p-5 shadow-2xl">
-              <OrderDetailsWorkspace
-                orderId={selectedOrderId}
-                mode="drawer"
-                onClose={() => setSelectedOrderId(null)}
-              />
-            </aside>
+            <OrderDetailsWorkspace
+              orderId={selectedOrderId}
+              mode="drawer"
+              onClose={() => setSelectedOrderId(null)}
+            />
           )}
-        </div>
-      )}
+        </SheetContent>
+      </Sheet>
     </>
   );
 }
