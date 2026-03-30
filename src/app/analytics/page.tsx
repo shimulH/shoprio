@@ -1,7 +1,10 @@
 import { DashboardShell } from "@/components/dashboard/dashboard-shell";
 import { kpis } from "@/data/mock-store";
+import { requireAuth } from "@/lib/auth";
 
-export default function AnalyticsPage() {
+export default async function AnalyticsPage() {
+  await requireAuth();
+
   return (
     <DashboardShell>
       <div className="space-y-5">

@@ -1,6 +1,9 @@
 import { DashboardShell } from "@/components/dashboard/dashboard-shell";
+import { requireAuth } from "@/lib/auth";
 
-export default function SettingsPage() {
+export default async function SettingsPage() {
+  await requireAuth();
+
   return (
     <DashboardShell>
       <div className="space-y-6">
@@ -12,7 +15,7 @@ export default function SettingsPage() {
         <div className="grid gap-4 lg:grid-cols-2">
           <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
             <h3 className="font-semibold text-slate-900">General</h3>
-            <p className="mt-2 text-sm text-slate-600">Store name: Shimul Storefront</p>
+            <p className="mt-2 text-sm text-slate-600">Store name: sagactlab flagship</p>
             <p className="text-sm text-slate-600">Currency: USD</p>
             <p className="text-sm text-slate-600">Timezone: GMT+6</p>
           </section>

@@ -1,8 +1,11 @@
 import { CustomerTable } from "@/components/dashboard/customer-table";
 import { DashboardShell } from "@/components/dashboard/dashboard-shell";
 import { customers } from "@/data/mock-store";
+import { requireAuth } from "@/lib/auth";
 
-export default function CustomersPage() {
+export default async function CustomersPage() {
+  await requireAuth();
+
   return (
     <DashboardShell>
       <div className="space-y-4">

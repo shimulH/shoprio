@@ -1,12 +1,15 @@
-"use client";
-
-import { useParams } from "next/navigation";
 import { DashboardShell } from "@/components/dashboard/dashboard-shell";
 import { OrderDetailsWorkspace } from "@/components/dashboard/order-details-workspace";
+import { requireAuth } from "@/lib/auth";
 
-export default function OrderDetailsPage() {
-  const params = useParams<{ id: string }>();
-  const orderId = decodeURIComponent(params.id ?? "");
+type OrderDetailsPageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function OrderDetailsPage({ params }: OrderDetailsPageProps) {
+  await requireAuth();
+  const resolvedParams = await params;
+  const orderId = decodeURIComponent(resolvedParams.id ?? "");
 
   return (
     <DashboardShell>
