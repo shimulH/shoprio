@@ -90,7 +90,7 @@ const copy = {
     viewDashboard: 'View dashboard',
     footerAddress: '5/14, block-B, Lalmatia, Dhaka, 1207',
     footerPhoneLabel: 'Phone',
-    footerPhone: '01715030023',
+    footerPhone: '+8801715030023',
     footerSections: {
       platform: 'Platform',
       company: 'Company',
