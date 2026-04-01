@@ -89,6 +89,8 @@ const copy = {
       'Bring sagactlab to your storefront and operations workflow.',
     viewDashboard: 'View dashboard',
     footerAddress: '5/14, block-B, Lalmatia, Dhaka, 1207',
+    footerPhoneLabel: 'Phone',
+    footerPhone: '01715030023',
     footerSections: {
       platform: 'Platform',
       company: 'Company',
@@ -185,7 +187,9 @@ const copy = {
     momentumCardTitle:
       'আপনার স্টোরফ্রন্ট ও অপারেশনস ওয়ার্কফ্লোতে sagactlab নিয়ে আসুন।',
     viewDashboard: 'ড্যাশবোর্ড দেখুন',
-    footerAddress: '৫/১৪, ব্লক-বি, লালমাটিয়া',
+    footerAddress: '৫/১৪, ব্লক-বি, লালমাটিয়া, ঢাকা ১২০৭',
+    footerPhoneLabel: 'ফোন',
+    footerPhone: '০১৭১৫০৩০০২৩',
     footerSections: {
       platform: 'প্ল্যাটফর্ম',
       company: 'কোম্পানি',
@@ -626,6 +630,9 @@ export default async function Home() {
             </p>
             <p className='mt-4 max-w-sm text-sm leading-7 text-[#5f7167]'>
               {t.footerAddress}
+            </p>
+            <p className='text-sm leading-7 text-[#5f7167]'>
+              {t.footerPhoneLabel}: {t.footerPhone}
             </p>
           </div>
 
